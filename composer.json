@@ -1,0 +1,24 @@
+{
+    "name": "terranetmd/zf-cache-backend",
+    "description": "SQLite3 and Redis support for Zend Framework 1.11.xx backend cache",
+    "homepage": "https://github.com/TerranetMD/zf-cache-backend-sqlite3",
+    "type": "library",
+    "keywords": [
+        "terranet",
+        "sqlite3",
+        "redis",
+        "cache",
+        "backend",
+        "zf"
+    ],
+    "license": "BSD-3-Clause",
+    "require": {
+        "php": ">=5.3.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "src"
+        }
+    },
+    "include-path": ["src/"]
+}
