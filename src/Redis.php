@@ -19,6 +19,7 @@ class Redis extends \Zend_Cache_Backend implements \Zend_Cache_Backend_ExtendedI
     const DEFAULT_PERSISTENT = false;
     const DEFAULT_DB = 0;
     const DEFAULT_PREFIX = '';
+    const DEFAULT_PASSWORD = null;
 
     /**
      * Log message
@@ -50,6 +51,7 @@ class Redis extends \Zend_Cache_Backend implements \Zend_Cache_Backend_ExtendedI
         'persistent'  => false,
         'db'          => self::DEFAULT_DB,
         'prefix'      => self::DEFAULT_PREFIX,
+        'password'    => self::DEFAULT_PASSWORD
     );
 
     /**
@@ -385,6 +387,11 @@ class Redis extends \Zend_Cache_Backend implements \Zend_Cache_Backend_ExtendedI
                     $this->_redis->setOption(\Redis::OPT_PREFIX, $this->_options['prefix']);
                 }
                 $this->_redis->setOption(\Redis::OPT_SERIALIZER, \Redis::SERIALIZER_PHP);
+
+                if (!empty($this->_options['password'])) {
+                    $this->_redis->auth($this->_options['password']);
+                }
+
                 $this->_redis->select($this->_options['db']);
             } catch (\RedisException $e) {
                 \Zend_Cache::throwException('Connection failed: '.$e->getMessage());
