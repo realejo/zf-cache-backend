@@ -384,7 +384,7 @@ class Redis extends \Zend_Cache_Backend implements \Zend_Cache_Backend_ExtendedI
                 if (!empty($this->_options['prefix'])) {
                     $this->_redis->setOption(\Redis::OPT_PREFIX, $this->_options['prefix']);
                 }
-                $this->_redis->setOption(\Redis::OPT_SERIALIZER, Redis::SERIALIZER_PHP);
+                $this->_redis->setOption(\Redis::OPT_SERIALIZER, \Redis::SERIALIZER_PHP);
                 $this->_redis->select($this->_options['db']);
             } catch (\RedisException $e) {
                 \Zend_Cache::throwException('Connection failed: '.$e->getMessage());
