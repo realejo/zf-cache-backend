@@ -177,6 +177,7 @@ class Redis extends \Zend_Cache_Backend implements \Zend_Cache_Backend_ExtendedI
      */
     public function clean($mode = \Zend_Cache::CLEANING_MODE_ALL, $tags = array())
     {
+        $this->_connect();
         switch ($mode) {
             case \Zend_Cache::CLEANING_MODE_ALL:
                 return $this->_redis->flushDB();
